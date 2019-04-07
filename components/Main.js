@@ -1,8 +1,11 @@
 import React from 'react';
 import Landing from '../containers/Landing';
+import { View } from 'react-native';
 
 const Main = () => (
-    <Fragment>
+    <View>
         <Landing />
-    </Fragment>
+    </View>
 );
+
+export default Main;
