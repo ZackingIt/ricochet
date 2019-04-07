@@ -1,10 +1,14 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 const Landing = () => (
-    <Fragment>
-        
-    </Fragment>
+    <View>
+        <Text>
+            Landing Page
+        </Text>
+        <Button title='New Game' onPress={() => {}} />
+    </View>
 );
 
-export default Landing;
+export default connect()(Landing);
