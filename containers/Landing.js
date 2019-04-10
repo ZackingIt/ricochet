@@ -1,13 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Button } from 'react-native';
+import { newGame, resumeGame } from '../actions';
 
-const Landing = () => (
+const Landing = ({ dispatch }) => (
     <View>
         <Text>
-            Landing Page
+            
         </Text>
-        <Button title='New Game' onPress={() => {}} />
+        <Button title='New Game'
+                onPress={() => { dispatch(newGame); }}
+
+        />
+        <Button title='Continue Game'
+                onPress={() => { dispatch(resumeGame); }}
+                
+        />
     </View>
 );
 
