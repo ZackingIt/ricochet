@@ -9,17 +9,17 @@ const Container = styled.View`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 22px;
-    width: 22px;
+    height: 24px;
+    width: 24px;
     margin: 0px;
     padding: 0px;
-    borderTopWidth: ${props => props.northWall ? "1px" : "1px"}
+    borderTopWidth: ${props => props.northWall ? "4px" : "0px"}
     borderTopColor: ${props => props.northWall ? 'grey' : 'transparent'}
-    borderRightWidth: ${props => props.eastWall ? "1px" : "1px"}
+    borderRightWidth: ${props => props.eastWall ? "4px" : "0px"}
     borderRightColor: ${props => props.eastWall ? 'grey' : 'transparent'}
-    borderBottomWidth: ${props => props.southWall ? "1px" : "1px"}
+    borderBottomWidth: ${props => props.southWall ? "4px" : "0px"}
     borderBottomColor: ${props => props.southWall ? 'grey' : 'transparent'}
-    borderLeftWidth: ${props => props.westWall ? "1px" : "1px"}
+    borderLeftWidth: ${props => props.westWall ? "4px" : "0px"}
     borderLeftColor: ${props => props.westWall ? 'grey' : 'transparent'}
     backgroundColor: ${props => props.targetColor}
 `;
@@ -61,7 +61,7 @@ const cellTargetColor = (cell, pieces) => {
     if (sameCoords(activeTargetCoords, currentCoord)) {
         return TARGET_COLORS[activeTargetColor];
     } else if (target) {
-        return 'grey';
+        return 'yellow';
     } else {
         return 'transparent';
     }
