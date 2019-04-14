@@ -1,66 +1,5 @@
-import { QUADRANT_LENGTH } from './constants';
-import { transformBoard, assignProperty, pluckTargets } from './functionUtils';
-
-// walls = [[ {northWall: 1, southWall: false }, { southWall: true } ]
-// 
-
-// [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-
-export var blankBoard = [
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }]
-];
-
-export var greenBoardOne = [
-    [{ n: 1, target: 0, walls: [1, 0, 0, 1] }, { n: 2, target: 0, walls: [0, 0, 0, 1] }, { n: 3, target: 0, walls: [0, 0, 0, 1] }, { n: 4, target: 0, walls: [0, 0, 0, 1] }, { n: 5, target: 0, walls: [0, 0, 0, 1] }, { n: 6, target: 0, walls: [0, 0, 0, 1] }, { n: 7, target: 0, walls: [0, 0, 0, 1] }, { n: 8, target: 0, walls: [1, 0, 0, 1] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 1, walls: [0, 0, 1, 1] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 1] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 1, walls: [1, 0, 0, 1] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [1, 1, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 1, walls: [0, 1, 1, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [1, 0, 0, 1] }],
-];
-
-export var blueBoardOne = [
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [1, 1, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 1, walls: [0, 0, 1, 1] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 1, walls: [0, 1, 1, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 1] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 1, walls: [1, 0, 0, 1] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 1, walls: [1, 1, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],
-    [{ n: 1, target: 0, walls: [1, 1, 0, 0] }, { n: 2, target: 0, walls: [0, 1, 0, 0] }, { n: 3, target: 0, walls: [0, 1, 0, 0] }, { n: 4, target: 0, walls: [0, 1, 0, 0] }, { n: 5, target: 0, walls: [0, 1, 1, 0] }, { n: 6, target: 0, walls: [0, 1, 0, 0] }, { n: 7, target: 0, walls: [0, 1, 0, 0] }, { n: 8, target: 0, walls: [0, 1, 0, 0] }]
-];
-
-export var yellowBoardOne = [
-    [{ n: 1, target: 0, walls: [0, 1, 1, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [1, 0, 0, 1] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 1, walls: [0, 1, 1, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 1, walls: [1, 1, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 1, walls: [1, 0, 0, 1] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 1] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 1, walls: [0, 0, 1, 1] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 1, 0, 0] }, { n: 2, target: 0, walls: [0, 1, 0, 0] }, { n: 3, target: 0, walls: [0, 1, 0, 0] }, { n: 4, target: 0, walls: [0, 1, 1, 0] }, { n: 5, target: 0, walls: [0, 1, 0, 0] }, { n: 6, target: 0, walls: [0, 1, 0, 0] }, { n: 7, target: 0, walls: [0, 1, 0, 0] }, { n: 8, target: 0, walls: [0, 1, 1, 0] }]
-];
-
-export var redBoardOne = [
-    [{ n: 1, target: 0, walls: [0, 0, 0, 1] }, { n: 2, target: 0, walls: [0, 0, 0, 1] }, { n: 3, target: 0, walls: [0, 0, 0, 1] }, { n: 4, target: 0, walls: [0, 0, 0, 1] }, { n: 5, target: 0, walls: [0, 0, 0, 1] }, { n: 6, target: 0, walls: [0, 0, 1, 1] }, { n: 7, target: 0, walls: [0, 0, 0, 1] }, { n: 8, target: 0, walls: [0, 0, 1, 1] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 1, walls: [1, 0, 0, 1] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 1, walls: [0, 1, 1, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 1, walls: [0, 0, 1, 1] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }],
-    [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 1, walls: [1, 1, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 1] }],
-    [{ n: 1, target: 0, walls: [0, 0, 1, 1] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 1, 0] }]
-];
-
+import { GREEN, RED, YELLOW, BLUE, redBoardOne, yellowBoardOne, blueBoardOne, greenBoardOne } from './constants';
+import { transformBoard, assignProperty, spliceRandomly } from './functionUtils';
 
 function appendNorthSouth(north, south) {
     for (let x = 0; x < north[0].length; x++) {
@@ -89,6 +28,21 @@ export function generateDefaultBoard() {
     return generateBoard(greenBoardOne, blueBoardOne, yellowBoardOne, redBoardOne);
 }
 
+const pluckTargets = function (board) {
+    let remainingTargets = [];
+    let nonTargetSpaces = [];
+    for (let x = 0; x < board.length; x++) {
+        for (let y = 0; y < board[x].length; y++) {
+            if (board[x][y].target) {
+                remainingTargets.push([x, y]);
+            } else {
+                nonTargetSpaces.push([x, y]);
+            }
+        }
+    }
+    return [remainingTargets, nonTargetSpaces];
+};
+
 function generateBoardNode(nodeConfig) {
     return new BoardNode(nodeConfig);
 }
@@ -102,3 +56,30 @@ export class BoardNode {
         this.target = Boolean(target);
     }
 }
+
+let colorList = [GREEN, GREEN, GREEN, GREEN, YELLOW,
+                YELLOW, YELLOW, YELLOW, RED, RED,
+                RED, RED, BLUE, BLUE, BLUE, BLUE];
+let initialBoard = generateDefaultBoard();
+let [remainingTargets, nonTargetSpaces] = pluckTargets(initialBoard);
+let green = spliceRandomly(nonTargetSpaces);
+let red = spliceRandomly(nonTargetSpaces);
+let blue = spliceRandomly(nonTargetSpaces);
+let yellow = spliceRandomly(nonTargetSpaces);
+let activeTargetColor = spliceRandomly(colorList);
+let activeTargetCoords = spliceRandomly(remainingTargets);
+
+export const initialState = {
+    board: initialBoard,
+    pieces: {
+        activeTargetColor: activeTargetColor,
+        activeTargetCoords: activeTargetCoords,
+        green: green[0],
+        red: red[0],
+        blue: blue[0],
+        yellow: yellow[0],
+        remainingTargets: remainingTargets,
+        remainingColors: colorList,
+        nonTargetSpaces: nonTargetSpaces
+    }
+};

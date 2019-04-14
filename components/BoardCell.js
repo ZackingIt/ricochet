@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { ROBOT_COLORS, TARGET_COLORS, GREEN, YELLOW, RED, BLUE } from '../utils/constants';
 import { sameCoords } from '../utils/functionUtils';
-
 
 const Container = styled.View`
     display: flex;
@@ -30,18 +29,16 @@ const Coordinates = styled.Text`
 `;
 
 const Robot = styled.View`
+    height: 16px;
+    width: 16px;
     border-radius: 10px;
-    background-color: ${props => props.robotColor}
+    backgroundColor: ${props => props.robotColor};
+    border: ${props => (props.robotColor !== 'transparent') ? '1px solid black' : '0px'};
 `;
-
-// I am storing various piece locations under the 'Pieces' reducer, which will track the locations of
-// blue, yellow, green, red robots as well as the location of the next target
-// I want to make this data immediately available to every BoardCell, so that I can compare current BoardCell's location
-// to the location of the active location, and render accordingly.
-// Later on, I'll also need to create an animation that shows the path travelled by the robot
 
 const cellRobotColor = (cell, pieces) => {
     let { green, red, yellow, blue } = pieces;
+    // this may not be destructuring correctly???
     let currentCoord = [cell.x, cell.y];
     if (sameCoords(green, currentCoord)) {
         return ROBOT_COLORS[GREEN];
@@ -51,12 +48,15 @@ const cellRobotColor = (cell, pieces) => {
         return ROBOT_COLORS[YELLOW];
     } else if (sameCoords(blue, currentCoord)) {
         return ROBOT_COLORS[BLUE];
+    } else {
+        return 'transparent';
     }
-    return 'transparent';
 };
 
 const cellTargetColor = (cell, pieces) => {
     let { target, x, y } = cell;
+    console.log('CELL ^^^^****', cell);
+    console.log('pieces ^^^^****', pieces);
     let { activeTargetColor, activeTargetCoords } = pieces;
     let currentCoord = [x, y];
     if (sameCoords(activeTargetCoords, currentCoord)) {
@@ -73,9 +73,8 @@ const BoardCell = ({ cell, pieces }) => {
         <Container {...cell}
             targetColor={cellTargetColor(cell, pieces)}
         >
-            <Coordinates>
-                { cell.x },{ cell.y }
-            </Coordinates>
+            {/* <Coordinates>
+            </Coordinates> */}
             <Robot robotColor={cellRobotColor(cell, pieces)}/>
         </Container>
     );

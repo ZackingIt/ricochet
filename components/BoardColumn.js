@@ -11,10 +11,9 @@ const Container = styled.View`
 `;
 
 const BoardColumn = ({ row, pieces }) => {
-
     return (
         <Container>
-            {row.map((cell) => <BoardCell cell={cell} pieces={pieces} />) }
+            {row.map((cell) => <BoardCell key={`${cell.x},${cell.y}`} cell={cell} pieces={pieces} />) }
         </Container>
     );
 };
