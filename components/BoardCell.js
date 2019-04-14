@@ -9,9 +9,10 @@ const Container = styled.View`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 24px;
-    width: 24px;
-    margin: 0px;
+    height: 23px;
+    width: 23px;
+    margin-right: -1px;
+    margin-left: -1px;
     padding: 0px;
     borderTopWidth: ${props => props.northWall ? "4px" : "0px"}
     borderTopColor: ${props => props.northWall ? 'grey' : 'transparent'}
@@ -25,7 +26,7 @@ const Container = styled.View`
 `;
 
 const Coordinates = styled.Text`
-    font-size: 3px;
+    font-size: 8px;
 `;
 
 const Robot = styled.View`

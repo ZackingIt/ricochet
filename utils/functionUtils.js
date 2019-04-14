@@ -10,8 +10,8 @@ export const transformBoard = function (board, boardFn) {
 export const assignProperty = function (board) {
     for (let x = 0; x < board.length; x++) {
         for (let y = 0; y < board[x].length; y++) {
-            board[x][y].x = x + 1;
-            board[x][y].y = y + 1;
+            board[x][y].x = (x + 1) % 8;
+            board[x][y].y = (y + 1) % 8;
         }
     }
     return board;
