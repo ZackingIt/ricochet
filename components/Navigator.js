@@ -6,7 +6,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const Navigator = createStackNavigator({
     Home: {
-        screen: Landing
+        screen: BoardContainer
     },
     Game: {
         screen: BoardContainer

@@ -8,15 +8,15 @@ export const resumeGame = {
     type: RESUME_GAME
 };
 
-export const move = (direction, id) => ({
+export const move = (direction, pieceColor) => ({
     type: MOVE,
     direction,
-    id
+    pieceColor
 });
 
-export const selectPiece = (id) => ({
+export const selectPiece = (pieceColor) => ({
     type: SELECT_PIECE,
-    id
+    pieceColor
 });
 
 export const findSolution = () => ({

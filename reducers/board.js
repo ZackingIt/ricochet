@@ -1,10 +1,10 @@
-import { MOVE, SELECT_PIECE } from '../utils/constants';
+import { NEW_GAME, RESUME_GAME } from '../utils/constants';
 
 const board = (state = {}, action) => {
     switch (action.type) {
-        case MOVE:
-        // need to return old state as well
-        // need to plan out board state
+        case NEW_GAME:
+            return state;
+        case RESUME_GAME:
             return state;
         default:
             return state;

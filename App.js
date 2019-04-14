@@ -7,7 +7,17 @@ import rootReducer from './reducers';
 import Navigator from './components/Navigator';
 import { generateDefaultBoard } from './utils/boardInitializers';
 
-var initialState = { board: generateDefaultBoard() };
+
+var initialState = { board: generateDefaultBoard(),
+                     pieces: {
+                       activeTargetColor: 'blue',
+                       activeTargetCoords: [0,0],
+                       green: [0, 7],
+                       red: [0,8],
+                       blue: [0,9],
+                       yellow: [0,10]
+                      }
+                   };
 
 const store = createStore(rootReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

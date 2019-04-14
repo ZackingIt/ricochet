@@ -1,22 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import BoardRow from './components/boardRow';
+import BoardColumn from '../components/BoardColumn';
+import styled from 'styled-components';
+
+const Container = styled.View`
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border: 1px solid green;
+`;
 
 class BoardContainer extends React.Component {
-    constructor({ board }) {
-        this.board = board;
+    constructor(props) {
+        super(props);
+        this.board = props.board;
+        this.pieces = props.pieces;
+    }
+
+    componentDidMount() {
+
     }
 
     render() {
         return (
-            <div>
-                {this.board.map((row) => (<BoardRow row={row} />))}
-            </div>
+            <Container>
+                {this.board.map((row) => (<BoardColumn row={row} pieces={this.pieces} />))}
+            </Container>
         );
     }
 
 }
 
-const mapStateToProps = state => ({ board: state.board });
+const mapStateToProps = state => ({ board: state.board, pieces: state.pieces });
 
 export default connect(mapStateToProps)(BoardContainer);
