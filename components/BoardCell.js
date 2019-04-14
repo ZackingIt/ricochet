@@ -61,8 +61,6 @@ const cellTargetColor = (cell, pieces) => {
     let currentCoord = [x, y];
     if (sameCoords(activeTargetCoords, currentCoord)) {
         return TARGET_COLORS[activeTargetColor];
-    } else if (target) {
-        return 'yellow';
     } else {
         return 'transparent';
     }

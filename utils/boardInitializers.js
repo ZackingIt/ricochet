@@ -1,3 +1,5 @@
+// TODO: block off four middle units so robots dont spawn trapped
+
 import { GREEN, RED, YELLOW, BLUE, redBoardOne, yellowBoardOne, blueBoardOne, greenBoardOne } from './constants';
 import { transformBoard, assignProperty, spliceRandomly } from './functionUtils';
 
@@ -74,10 +76,11 @@ export const initialState = {
     pieces: {
         activeTargetColor: activeTargetColor,
         activeTargetCoords: activeTargetCoords,
-        green: green[0],
-        red: red[0],
-        blue: blue[0],
-        yellow: yellow[0],
+        selectedPiece: GREEN,
+        green: green,
+        red: red,
+        blue: blue,
+        yellow: yellow,
         remainingTargets: remainingTargets,
         remainingColors: colorList,
         nonTargetSpaces: nonTargetSpaces

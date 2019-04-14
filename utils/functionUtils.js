@@ -22,5 +22,5 @@ export const sameCoords = function (firstCoordTuple, secondCoordTuple) {
 };
 
 export const spliceRandomly = function(array) {
-    return array.splice(Math.floor(Math.random()*(array.length-1)), 1);
+    return array.splice(Math.floor(Math.random()*(array.length-1)), 1)[0];
 };
