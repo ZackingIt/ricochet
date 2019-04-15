@@ -10,16 +10,11 @@ const Container = styled.View`
     flex-direction: column;
     height: 23px;
     width: 23px;
-    margin-right: -1px;
-    margin-left: -1px;
     padding: 0px;
-    borderTopWidth: ${props => props.northWall ? "4px" : "0px"}
+    borderWidth: 4px;
     borderTopColor: ${props => props.northWall ? 'grey' : 'transparent'}
-    borderRightWidth: ${props => props.eastWall ? "4px" : "0px"}
     borderRightColor: ${props => props.eastWall ? 'grey' : 'transparent'}
-    borderBottomWidth: ${props => props.southWall ? "4px" : "0px"}
     borderBottomColor: ${props => props.southWall ? 'grey' : 'transparent'}
-    borderLeftWidth: ${props => props.westWall ? "4px" : "0px"}
     borderLeftColor: ${props => props.westWall ? 'grey' : 'transparent'}
     backgroundColor: ${props => props.targetColor}
 `;
