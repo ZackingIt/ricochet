@@ -27,9 +27,8 @@ export const spliceRandomly = function(array) {
     return array.splice(Math.floor(Math.random()*(array.length-1)), 1)[0];
 };
 
-const traverseNorthSouth = (direction, currentLoc, board) => {
-    let x = currentLoc[0];
-    let y = currentLoc[1];
+const traverseNorthSouth = (direction, { currentLoc, pieceList, board }) => {
+    let [x, y] = currentLoc;
     if (direction === NORTH) {
         while (!board[x][y].northWall && (y >= 1 && !board[x][y-1].southWall)) {
             y -= 1;
@@ -42,9 +41,8 @@ const traverseNorthSouth = (direction, currentLoc, board) => {
     return [x, y];
 };
 
-const traverseEastWest = (direction, currentLoc, board) => {
-    let x = currentLoc[0];
-    let y = currentLoc[1];
+const traverseEastWest = (direction, { currentLoc, pieceList, board }) => {
+    let [x, y] = currentLoc;
     if (direction === WEST) {
         while (!board[x][y].westWall && (x >= 1 && !board[x - 1][y].eastWall)) {
             x -= 1;
@@ -58,18 +56,18 @@ const traverseEastWest = (direction, currentLoc, board) => {
 };
 
 
-export const movePiece = function(currentLoc, direction, board) {
+export const movePiece = function(direction, details) {
     switch(direction) {
         case NORTH:
-            return traverseNorthSouth(NORTH, currentLoc, board);
+            return traverseNorthSouth(NORTH, details);
         case SOUTH:
-            return traverseNorthSouth(SOUTH, currentLoc, board);
+            return traverseNorthSouth(SOUTH, details);
         case EAST:
-            return traverseEastWest(EAST, currentLoc, board);
+            return traverseEastWest(EAST, details);
         case WEST:
-            return traverseEastWest(WEST, currentLoc, board);
+            return traverseEastWest(WEST, details);
         default:
-            return currentLoc;
+            return details.currentLoc;
         }
 };
 

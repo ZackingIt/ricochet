@@ -1,4 +1,4 @@
-import { MOVE, SELECT_PIECE, NORTH, SOUTH, EAST, WEST } from '../utils/constants';
+import { MOVE, SELECT_PIECE, NORTH, SOUTH, EAST, WEST, BLUE, RED, GREEN, YELLOW } from '../utils/constants';
 import { movePiece } from '../utils/functionUtils';
 import merge from 'lodash/merge';
 
@@ -6,7 +6,9 @@ const game = (state = {}, action) => {
     switch (action.type) {
         case MOVE:
             let selectedPiece = state.pieces.selectedPiece;
-            let newLoc = movePiece(state.pieces[selectedPiece], action.direction, state.board);
+            let pieceList = [state.pieces[BLUE], state.pieces[RED], state.pieces[GREEN], state.pieces[YELLOW]];
+            let details = { currentLoc: state.pieces[selectedPiece], pieceList: pieceList, board: state.board };
+            let newLoc = movePiece(action.direction, details);
             return merge({}, state, { pieces: { [selectedPiece]: newLoc }});
         case SELECT_PIECE:
             return merge({}, state, { pieces: { selectedPiece: action.pieceColor }} );
