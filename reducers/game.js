@@ -18,7 +18,7 @@ const game = (state = {}, action) => {
             // need to return old state as wells
             // need to plan out board state
             
-            return merge({}, state, { selectedPiece: action.pieceColor });
+            return merge({}, state, { pieces: { selectedPiece: action.pieceColor }} );
         default:
             return state;
     }

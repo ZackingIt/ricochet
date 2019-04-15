@@ -10,7 +10,6 @@ const Container = styled.View`
 `;
 
 const BoardContainer = ({board, pieces}) => {
-    console.log('BOARD CONTAINER PIECES', pieces);
     return (
         <Container>
             {board.map((row, idx) => (<BoardColumn key={idx} row={row} pieces={pieces} />))}
@@ -19,7 +18,6 @@ const BoardContainer = ({board, pieces}) => {
 };
 
 const mapStateToProps = state => {
-    console.log('MAPPED STATE @@@', state);
     return { board: state.game.board, pieces: state.game.pieces }
 };
 
