@@ -27,7 +27,7 @@ export const spliceRandomly = function(array) {
     return array.splice(Math.floor(Math.random()*(array.length-1)), 1)[0];
 };
 
-export const movePiece = function(currentLoc, direction) {
+export const movePiece = function(currentLoc, direction, board) {
     return [0, 0];
     // switch (direction) {
     //     case NORTH:

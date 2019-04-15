@@ -8,10 +8,12 @@ const game = (state = {}, action) => {
             // need to return old state as well
             // need to plan out board state
             console.log('PIECES STATE @@@@', state);
-            let selectedPiece = state.selectedPiece;
-            let newLoc = movePiece(state[selectedPiece], action.direction);
+            let selectedPiece = state.pieces.selectedPiece;
+            console.log('!!! selected piece is ', selectedPiece);
 
-            return merge({}, state, { [selectedPiece]: newLoc } );
+            let newLoc = movePiece(state.pieces[selectedPiece], action.direction, state.board);
+
+            return merge({}, state, { pieces: { [selectedPiece]: newLoc }});
         case SELECT_PIECE:
             // need to return old state as wells
             // need to plan out board state
