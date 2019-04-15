@@ -1,7 +1,7 @@
 // TODO: block off four middle units so robots dont spawn trapped
 
 import { GREEN, RED, YELLOW, BLUE, redBoardOne, yellowBoardOne, blueBoardOne, greenBoardOne } from './constants';
-import { transformBoard, assignProperty, spliceRandomly } from './functionUtils';
+import { transformBoard, assignProperty, spliceRandomly, sameCoords } from './functionUtils';
 
 function appendNorthSouth(north, south) {
     for (let x = 0; x < north[0].length; x++) {
@@ -33,16 +33,27 @@ export function generateDefaultBoard() {
 const pluckTargets = function (board) {
     let remainingTargets = [];
     let nonTargetSpaces = [];
+    let avoidedSpaces = [[7,7], [8,7], [7,8], [8,8]];
     for (let x = 0; x < board.length; x++) {
         for (let y = 0; y < board[x].length; y++) {
             if (board[x][y].target) {
                 remainingTargets.push([x, y]);
-            } else {
+            } else if (acceptableSpace([x, y], avoidedSpaces)) {
                 nonTargetSpaces.push([x, y]);
             }
         }
     }
     return [remainingTargets, nonTargetSpaces];
+};
+
+const acceptableSpace = (currentCoord, avoidedSpaces) => {
+    let output = true;
+    avoidedSpaces.forEach((avoidedSpace) => {
+        if (sameCoords(currentCoord, avoidedSpace)) {
+            output = false;
+        }
+    });
+    return output;
 };
 
 function generateBoardNode(nodeConfig) {
