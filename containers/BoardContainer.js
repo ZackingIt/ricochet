@@ -9,27 +9,18 @@ const Container = styled.View`
     flex-direction: row;
 `;
 
-class BoardContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.board = props.board;
-        this.pieces = props.pieces;
-    }
+const BoardContainer = ({board, pieces}) => {
+    console.log('BOARD CONTAINER PIECES', pieces);
+    return (
+        <Container>
+            {board.map((row, idx) => (<BoardColumn key={idx} row={row} pieces={pieces} />))}
+        </Container>
+    );
+};
 
-    componentDidMount() {
-
-    }
-
-    render() {
-        return (
-            <Container>
-                {this.board.map((row, idx) => (<BoardColumn key={idx} row={row} pieces={this.pieces} />))}
-            </Container>
-        );
-    }
-
-}
-
-const mapStateToProps = state => ({ board: state.board, pieces: state.pieces });
+const mapStateToProps = state => {
+    console.log('MAPPED STATE @@@', state);
+    return { board: state.game.board, pieces: state.game.pieces }
+};
 
 export default connect(mapStateToProps)(BoardContainer);

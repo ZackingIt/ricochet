@@ -2,7 +2,7 @@ import { MOVE, SELECT_PIECE, NORTH, SOUTH, EAST, WEST } from '../utils/constants
 import { movePiece } from '../utils/functionUtils';
 import merge from 'lodash/merge';
 
-const pieces = (state = {}, action) => {
+const game = (state = {}, action) => {
     switch (action.type) {
         case MOVE:
             // need to return old state as well
@@ -22,4 +22,4 @@ const pieces = (state = {}, action) => {
     }
 };
 
-export default pieces;
+export default game;

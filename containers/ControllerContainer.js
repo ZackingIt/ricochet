@@ -28,7 +28,7 @@ const Container = styled.View`
 
 const mapStateToProps = (state) => {
     return {
-        selectedPiece: state.pieces.selectedPiece
+        selectedPiece: state.game.pieces.selectedPiece
     };
 };
 

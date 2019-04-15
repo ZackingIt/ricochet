@@ -72,17 +72,19 @@ let activeTargetColor = spliceRandomly(colorList);
 let activeTargetCoords = spliceRandomly(remainingTargets);
 
 export const initialState = {
-    board: initialBoard,
-    pieces: {
-        activeTargetColor: activeTargetColor,
-        activeTargetCoords: activeTargetCoords,
-        selectedPiece: GREEN,
-        green: green,
-        red: red,
-        blue: blue,
-        yellow: yellow,
-        remainingTargets: remainingTargets,
-        remainingColors: colorList,
-        nonTargetSpaces: nonTargetSpaces
+    game: {
+        board: initialBoard,
+        pieces: {
+            activeTargetColor: activeTargetColor,
+            activeTargetCoords: activeTargetCoords,
+            selectedPiece: GREEN,
+            green: green,
+            red: red,
+            blue: blue,
+            yellow: yellow,
+            remainingTargets: remainingTargets,
+            remainingColors: colorList,
+            nonTargetSpaces: nonTargetSpaces
+        }
     }
 };
