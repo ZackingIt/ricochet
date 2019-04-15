@@ -55,8 +55,6 @@ const cellRobotColor = (cell, pieces) => {
 
 const cellTargetColor = (cell, pieces) => {
     let { target, x, y } = cell;
-    console.log('CELL ^^^^****', cell);
-    console.log('pieces ^^^^****', pieces);
     let { activeTargetColor, activeTargetCoords } = pieces;
     let currentCoord = [x, y];
     if (sameCoords(activeTargetCoords, currentCoord)) {

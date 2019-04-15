@@ -7,7 +7,6 @@ const Container = styled.View`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    border: 1px solid green;
 `;
 
 class BoardContainer extends React.Component {
@@ -24,7 +23,7 @@ class BoardContainer extends React.Component {
     render() {
         return (
             <Container>
-                {this.board.map((row) => (<BoardColumn row={row} pieces={this.pieces} />))}
+                {this.board.map((row, idx) => (<BoardColumn key={idx} row={row} pieces={this.pieces} />))}
             </Container>
         );
     }
