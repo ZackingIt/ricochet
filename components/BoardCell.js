@@ -24,10 +24,6 @@ const Container = styled.View`
     backgroundColor: ${props => props.targetColor}
 `;
 
-const Coordinates = styled.Text`
-    font-size: 8px;
-`;
-
 const Robot = styled.View`
     height: 16px;
     width: 16px;
@@ -69,8 +65,6 @@ const BoardCell = ({ cell, pieces }) => {
         <Container {...cell}
             targetColor={cellTargetColor(cell, pieces)}
         >
-            {/* <Coordinates>
-            </Coordinates> */}
             <Robot robotColor={cellRobotColor(cell, pieces)}/>
         </Container>
     );

@@ -8,11 +8,12 @@ const Button = styled.TouchableHighlight`
     border: ${props => props.robotColor === props.selectedPiece ? '2px solid black' : '0px'};
     height: 60px;
     width: 60px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 23px;
 `;
 
 const RobotSelector = ({robotColor, selectedPiece, pickPiece }) => {
-    console.log('ROBOT COLOR, ', robotColor);
-    console.log('selected COLOR, ', selectedPiece);
     return (
         <Button onPress={() => pickPiece(robotColor)} robotColor={robotColor} selectedPiece={selectedPiece}>
             <Text></Text>
