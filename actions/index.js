@@ -8,10 +8,9 @@ export const resumeGame = {
     type: RESUME_GAME
 };
 
-export const move = (direction, pieceColor) => ({
+export const move = (direction) => ({
     type: MOVE,
-    direction,
-    pieceColor
+    direction
 });
 
 export const selectPiece = (pieceColor) => ({

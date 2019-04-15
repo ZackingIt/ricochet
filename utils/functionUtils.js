@@ -1,3 +1,5 @@
+import { NORTH, SOUTH, EAST, WEST } from './constants';
+
 export const transformBoard = function (board, boardFn) {
     for (let x = 0; x < board.length; x++) {
         for (let y = 0; y < board[x].length; y++) {
@@ -23,4 +25,12 @@ export const sameCoords = function (firstCoordTuple, secondCoordTuple) {
 
 export const spliceRandomly = function(array) {
     return array.splice(Math.floor(Math.random()*(array.length-1)), 1)[0];
+};
+
+export const movePiece = function(currentLoc, direction) {
+    return [0, 0];
+    // switch (direction) {
+    //     case NORTH:
+        
+    // }
 };

@@ -1,10 +1,10 @@
 export const NEW_GAME = 'NEW_GAME';
 export const RESUME_GAME = 'RESUME_GAME';
 export const MOVE = 'MOVE';
-export const UP = 'UP';
-export const DOWN = 'DOWN';
-export const LEFT = 'LEFT';
-export const RIGHT = 'RIGHT';
+export const NORTH = 'NORTH';
+export const SOUTH = 'SOUTH';
+export const EAST = 'EAST';
+export const WEST = 'WEST';
 export const SELECT_PIECE = 'SELECT_PIECE';
 export const ROBOT_COLORS = { blue: '#2E64FE', red: '#DF0000', yellow: '#ECE500', green: '#4BE806' };
 export const TARGET_COLORS = { blue: 'blue', red: 'red', yellow: 'yellow', green: 'green', grey: 'grey' };
