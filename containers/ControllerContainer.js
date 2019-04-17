@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { selectPiece, move } from '../actions';
+import { selectPiece, move, undo, redo, clearHistory } from '../actions';
 import { BLUE, RED, GREEN, YELLOW, NORTH, SOUTH, EAST, WEST, CONTROLLER_SIZE } from '../utils/constants';
 
 import RobotSelector from '../components/RobotSelector';
 import InputButton from '../components/InputButton';
+import HistoryButton from '../components/HistoryButton';
 
 const Column = styled.View`
     display: flex;
@@ -45,10 +46,19 @@ const mapDispatchToProps = (dispatch) => ({
     },
     movePiece: (direction) => {
         dispatch(move(direction));
+    },
+    undo: () => {
+        dispatch(undo);
+    },
+    redo: () => {
+        dispatch(redo);
+    },
+    clearHistory: () => {
+        dispatch(clearHistory);
     }
 });
 
-const RobotControlGroup = ({selectedPiece, pickPiece, movePiece}) => {
+const RobotControlGroup = ({selectedPiece, pickPiece, movePiece, undo, redo, clearHistory}) => {
     return (
         <Container>
             <Column>
@@ -59,6 +69,10 @@ const RobotControlGroup = ({selectedPiece, pickPiece, movePiece}) => {
                 <Row>
                     <RobotSelector key={RED} robotColor={RED} selectedPiece={selectedPiece} pickPiece={pickPiece} />
                     <RobotSelector key={YELLOW} robotColor={YELLOW} selectedPiece={selectedPiece} pickPiece={pickPiece} />
+                </Row>
+                <Row>
+                    <HistoryButton fn={redo} description="Redo" />
+                    <HistoryButton fn={undo} description="Undo" />
                 </Row>
             </Column>
             <Column>

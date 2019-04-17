@@ -14,6 +14,9 @@ export const GREEN = 'green';
 export const YELLOW = 'yellow';
 export const CONTROLLER_SIZE = '60px';
 export const GET_NEW_ACTIVE_TARGET = 'GET_NEW_ACTIVE_TARGET';
+export const CLEAR_HISTORY = 'CLEAR_HISTORY';
+export const REDO = 'REDO';
+export const UNDO = 'UNDO';
 
 export var blankBoard = [
     [{ y: 0, target: 0, walls: [0, 0, 0, 0] }, { y: 1, target: 0, walls: [0, 0, 0, 0] }, { y: 2, target: 0, walls: [0, 0, 0, 0] }, { y: 3, target: 0, walls: [0, 0, 0, 0] }, { y: 4, target: 0, walls: [0, 0, 0, 0] }, { y: 5, target: 0, walls: [0, 0, 0, 0] }, { y: 6, target: 0, walls: [0, 0, 0, 0] }, { y: 7, target: 0, walls: [0, 0, 0, 0] }],
