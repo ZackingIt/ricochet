@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { View } from 'react-native';
 import BoardContainer from '../containers/BoardContainer';
 import ControllerContainer from '../containers/ControllerContainer';
 

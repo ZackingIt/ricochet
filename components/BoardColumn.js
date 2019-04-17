@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import BoardCell from './BoardCell';
 import styled from 'styled-components';
 
@@ -10,7 +9,7 @@ const Container = styled.View`
     flex-direction: column;
 `;
 
-const BoardColumn = ({ row, pieces, getNewTarget }) => {
+const BoardColumn = ({ row, pieces }) => {
     return (
         <Container>
             {row.map((cell) => <BoardCell key={`${cell.x},${cell.y}`} cell={cell} pieces={pieces} />) }

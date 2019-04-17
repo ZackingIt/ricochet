@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import styled from 'styled-components';
 import { ROBOT_COLORS, TARGET_COLORS, GREEN, YELLOW, RED, BLUE } from '../utils/constants';
 import { sameCoords } from '../utils/functionUtils';
@@ -29,8 +28,8 @@ const Robot = styled.View`
 
 const cellRobotColor = (cell, pieces) => {
     let { green, red, yellow, blue } = pieces;
-    // this may not be destructuring correctly???
     let currentCoord = [cell.x, cell.y];
+
     if (sameCoords(green, currentCoord)) {
         return ROBOT_COLORS[GREEN];
     } else if (sameCoords(red, currentCoord)) {
@@ -45,7 +44,7 @@ const cellRobotColor = (cell, pieces) => {
 };
 
 const cellTargetColor = (cell, pieces) => {
-    let { target, x, y } = cell;
+    let { x, y } = cell;
     let { activeTargetColor, activeTargetCoords } = pieces;
     let currentCoord = [x, y];
     if (sameCoords(activeTargetCoords, currentCoord)) {

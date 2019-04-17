@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { Text } from 'react-native';
 import { CONTROLLER_SIZE } from '../utils/constants';
 import styled from 'styled-components';
 
@@ -13,7 +13,6 @@ const InputButton = ({direction, movePiece}) => {
     return (
         <DirectionButton onPress={() => movePiece(direction)}>
             <Text>
-                {direction}
             </Text>
         </DirectionButton>
     );

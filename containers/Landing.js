@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { View, Text, Button } from 'react-native';
-import { NEW_GAME, RESUME_GAME } from '../utils/constants';
 
 function newGame(navigation) {
     navigation.navigate('Game');
