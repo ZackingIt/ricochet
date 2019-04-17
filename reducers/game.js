@@ -1,5 +1,5 @@
-import { MOVE, SELECT_PIECE, NORTH, SOUTH, EAST, WEST, BLUE, RED, GREEN, YELLOW } from '../utils/constants';
-import { movePiece } from '../utils/functionUtils';
+import { MOVE, SELECT_PIECE, NORTH, SOUTH, EAST, WEST, BLUE, RED, GREEN, YELLOW, GET_NEW_ACTIVE_TARGET } from '../utils/constants';
+import { movePiece, spliceRandomly } from '../utils/functionUtils';
 import merge from 'lodash/merge';
 
 const game = (state = {}, action) => {
@@ -12,6 +12,12 @@ const game = (state = {}, action) => {
             return merge({}, state, { pieces: { [selectedPiece]: newLoc }});
         case SELECT_PIECE:
             return merge({}, state, { pieces: { selectedPiece: action.pieceColor }} );
+        case GET_NEW_ACTIVE_TARGET:
+            let remainingColors = state.pieces.remainingColors.slice(0);
+            let activeTargetColor = spliceRandomly(remainingColors);
+            let remainingTargets = state.pieces.remainingTargets.slice(0);
+            let activeTargetCoords = spliceRandomly(remainingTargets);
+            return merge({}, state, { pieces: { remainingColors, activeTargetColor, remainingTargets, activeTargetCoords } });
         default:
             return state;
     }

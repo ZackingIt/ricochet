@@ -18,7 +18,7 @@ const Row = styled.View`
     display: flex;
     flex-direction: row;
 `;
-    
+
 const Container = styled.View`
     display: flex;
     flex-direction: row;

@@ -14,6 +14,7 @@ export const BLUE = 'blue';
 export const GREEN = 'green';
 export const YELLOW = 'yellow';
 export const CONTROLLER_SIZE = '60px';
+export const GET_NEW_ACTIVE_TARGET = 'GET_NEW_ACTIVE_TARGET';
 
 export var blankBoard = [
     [{ n: 1, target: 0, walls: [0, 0, 0, 0] }, { n: 2, target: 0, walls: [0, 0, 0, 0] }, { n: 3, target: 0, walls: [0, 0, 0, 0] }, { n: 4, target: 0, walls: [0, 0, 0, 0] }, { n: 5, target: 0, walls: [0, 0, 0, 0] }, { n: 6, target: 0, walls: [0, 0, 0, 0] }, { n: 7, target: 0, walls: [0, 0, 0, 0] }, { n: 8, target: 0, walls: [0, 0, 0, 0] }],

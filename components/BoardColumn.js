@@ -10,7 +10,7 @@ const Container = styled.View`
     flex-direction: column;
 `;
 
-const BoardColumn = ({ row, pieces }) => {
+const BoardColumn = ({ row, pieces, getNewTarget }) => {
     return (
         <Container>
             {row.map((cell) => <BoardCell key={`${cell.x},${cell.y}`} cell={cell} pieces={pieces} />) }
