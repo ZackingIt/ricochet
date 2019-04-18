@@ -28,7 +28,6 @@ const Robot = styled.View`
 
 const cellRobotColor = (cell, robots) => {
     let { green, red, yellow, blue } = robots;
-    console.log('boardgreen !!', green);
     let currentCoord = [cell.x, cell.y];
 
     if (sameCoords(green, currentCoord)) {
@@ -56,7 +55,6 @@ const cellTargetColor = (cell, targets) => {
 };
 
 const BoardCell = ({ cell, targets, robots }) => {
-    console.log('board cell robots @@@', robots);
     return (
         <Container {...cell}
             targetColor={cellTargetColor(cell, targets)}
