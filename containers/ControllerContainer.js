@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { selectPiece, move, undo, redo, clearHistory } from '../actions';
+import { selectPiece, move } from '../actions';
 import { BLUE, RED, GREEN, YELLOW, NORTH,
          SOUTH, EAST, WEST, CONTROLLER_SIZE } from '../utils/constants';
 
 import RobotSelector from '../components/RobotSelector';
 import InputButton from '../components/InputButton';
 import HistoryButton from '../components/HistoryButton';
+import { ActionCreators } from 'redux-undo';
 
 const Column = styled.View`
     display: flex;
@@ -49,13 +50,13 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(move(direction));
     },
     undo: () => {
-        dispatch(undo);
+        dispatch(ActionCreators.undo());
     },
     redo: () => {
-        dispatch(redo);
+        dispatch(ActionCreators.redo());
     },
     clearHistory: () => {
-        dispatch(clearHistory);
+        dispatch(ActionCreators.clearHistory());
     }
 });
 
