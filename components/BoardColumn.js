@@ -12,7 +12,9 @@ const Container = styled.View`
 const BoardColumn = ({ column, robots, targets }) => {
     return (
         <Container>
-            {column.map((cell) => <BoardCell key={`${cell.x},${cell.y}`} cell={cell} robots={robots} targets={targets} />) }
+            {column.map((cell) => {
+                return <BoardCell key={`${cell.x},${cell.y}`} cell={cell} robots={robots} targets={targets} />
+            }) }
         </Container>
     );
 };

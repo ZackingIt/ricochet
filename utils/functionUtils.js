@@ -144,11 +144,15 @@ let activeTargetCoords = spliceRandomly(remainingTargets);
 
 export const initialState = {
     robots: {
-        selectedPiece: GREEN,
-        green: green,
-        red: red,
-        blue: blue,
-        yellow: yellow
+        past: [],
+        present: {
+            selectedPiece: GREEN,
+            green: green,
+            red: red,
+            blue: blue,
+            yellow: yellow
+        },
+        future: []
     },
     targets: {
         activeColor: activeTargetColor,

@@ -11,7 +11,7 @@ const robots = (state = {}, action) => {
             let newLoc = moveRobot(action.direction, details);
             return merge({}, state, { [selectedPiece]: newLoc });
         case SELECT_PIECE:
-            return merge({}, state, { selectedPiece: action.pieceColor } );
+            return merge({}, state, { selectedPiece: action.pieceColor });
         default:
             return state;
     }

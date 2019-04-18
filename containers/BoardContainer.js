@@ -24,16 +24,21 @@ class BoardContainer extends React.Component {
 
     render() {
         let { getNewTarget, robots, targets } = this.props;
-        return (
-            <Container>
-                {INITIAL_BOARD.map((column, idx) => (<BoardColumn key={idx} getNewTarget={getNewTarget} column={column} targets={targets} robots={robots} />))}
-            </Container>
-        );
+
+        if (robots) {
+            return (
+                <Container>
+                    {INITIAL_BOARD.map((column, idx) => (<BoardColumn key={idx} getNewTarget={getNewTarget} column={column} targets={targets} robots={robots} />))}
+                </Container>
+            );
+        } else {
+            return <Container />
+        }
     }
 }
 
 const mapStateToProps = state => {
-    return { targets: state.targets, robots: state.robots };
+    return { targets: state.targets, robots: state.robots.present || state.robots.past[0] };
 };
 
 const mapDispatchToProps = (dispatch) => {

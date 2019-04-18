@@ -37,7 +37,7 @@ const Spacing = styled.View`
 
 const mapStateToProps = (state) => {
     return {
-        selectedPiece: state.robots.selectedPiece
+        selectedPiece: state.robots.present.selectedPiece
     };
 };
 
