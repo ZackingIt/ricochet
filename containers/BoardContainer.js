@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import BoardColumn from '../components/BoardColumn';
 import styled from 'styled-components';
 import { getNewActiveTarget } from '../actions';
-import { sameCoords } from '../utils/functionUtils';
+import { sameCoords, INITIAL_BOARD } from '../utils/functionUtils';
 
 const Container = styled.View`
     display: flex;
@@ -11,21 +11,29 @@ const Container = styled.View`
     flex-direction: row;
 `;
 
-const BoardContainer = ({ board, pieces, getNewTarget }) => {
-    if (sameCoords(pieces[pieces.activeTargetColor], pieces.activeTargetCoords)) {
-        getNewTarget();
+class BoardContainer extends React.Component {
+    constructor(props) {
+        super(props);
     }
-    return (
-        <Container>
-            {board.map((row, idx) => (<BoardColumn key={idx} getNewTarget={getNewTarget} row={row} pieces={pieces} />))}
-        </Container>
-    );
-};
 
+    componentDidUpdate() {
+        if (sameCoords(this.props.robots[this.props.targets.activeColor], this.props.targets.activeCoords)) {
+            this.props.getNewTarget();
+        }
+    }
 
+    render() {
+        let { getNewTarget, robots, targets } = this.props;
+        return (
+            <Container>
+                {INITIAL_BOARD.map((column, idx) => (<BoardColumn key={idx} getNewTarget={getNewTarget} column={column} targets={targets} robots={robots} />))}
+            </Container>
+        );
+    }
+}
 
 const mapStateToProps = state => {
-    return { board: state.game.board, pieces: state.game.pieces };
+    return { targets: state.targets, robots: state.robots };
 };
 
 const mapDispatchToProps = (dispatch) => {

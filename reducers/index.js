@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import game from './game';
+import robots from './robots';
+import targets from './targets';
 
 export default combineReducers({
-    game: game
+    robots,
+    targets
 });

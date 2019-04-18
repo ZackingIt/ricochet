@@ -9,9 +9,9 @@ const DirectionButton = styled.TouchableHighlight`
     width: ${CONTROLLER_SIZE};
 `;
 
-const InputButton = ({direction, movePiece}) => {
+const InputButton = ({direction, moveRobot}) => {
     return (
-        <DirectionButton onPress={() => movePiece(direction)}>
+        <DirectionButton onPress={() => moveRobot(direction)}>
             <Text>
             </Text>
         </DirectionButton>

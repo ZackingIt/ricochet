@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { selectPiece, move, undo, redo, clearHistory } from '../actions';
-import { BLUE, RED, GREEN, YELLOW, NORTH, SOUTH, EAST, WEST, CONTROLLER_SIZE } from '../utils/constants';
+import { BLUE, RED, GREEN, YELLOW, NORTH,
+         SOUTH, EAST, WEST, CONTROLLER_SIZE } from '../utils/constants';
 
 import RobotSelector from '../components/RobotSelector';
 import InputButton from '../components/InputButton';
@@ -36,7 +37,7 @@ const Spacing = styled.View`
 
 const mapStateToProps = (state) => {
     return {
-        selectedPiece: state.game.pieces.selectedPiece
+        selectedPiece: state.robots.selectedPiece
     };
 };
 
@@ -44,7 +45,7 @@ const mapDispatchToProps = (dispatch) => ({
     pickPiece: (pieceColor) => {
         dispatch(selectPiece(pieceColor));
     },
-    movePiece: (direction) => {
+    moveRobot: (direction) => {
         dispatch(move(direction));
     },
     undo: () => {
@@ -58,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
-const RobotControlGroup = ({selectedPiece, pickPiece, movePiece, undo, redo, clearHistory}) => {
+const RobotControlGroup = ({selectedPiece, pickPiece, moveRobot, undo, redo, clearHistory}) => {
     return (
         <Container>
             <Column>
@@ -77,13 +78,13 @@ const RobotControlGroup = ({selectedPiece, pickPiece, movePiece, undo, redo, cle
             </Column>
             <Column>
                 <Row>
-                    <Spacing /><InputButton direction={NORTH} movePiece={movePiece} /><Spacing />
+                    <Spacing /><InputButton direction={NORTH} moveRobot={moveRobot} /><Spacing />
                 </Row>
                 <Row>
-                    <InputButton direction={WEST} movePiece={movePiece} /><Spacing /><InputButton direction={EAST} movePiece={movePiece} />
+                    <InputButton direction={WEST} moveRobot={moveRobot} /><Spacing /><InputButton direction={EAST} moveRobot={moveRobot} />
                 </Row>
                 <Row>
-                    <Spacing /><InputButton direction={SOUTH} movePiece={movePiece} /><Spacing />
+                    <Spacing /><InputButton direction={SOUTH} moveRobot={moveRobot} /><Spacing />
                 </Row>
             </Column>
         </Container>

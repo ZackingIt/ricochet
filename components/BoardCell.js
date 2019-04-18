@@ -26,8 +26,8 @@ const Robot = styled.View`
     border: ${props => (props.robotColor !== 'transparent') ? '1px solid black' : '0px'};
 `;
 
-const cellRobotColor = (cell, pieces) => {
-    let { green, red, yellow, blue } = pieces;
+const cellRobotColor = (cell, robots) => {
+    let { green, red, yellow, blue } = robots;
     let currentCoord = [cell.x, cell.y];
 
     if (sameCoords(green, currentCoord)) {
@@ -43,23 +43,23 @@ const cellRobotColor = (cell, pieces) => {
     }
 };
 
-const cellTargetColor = (cell, pieces) => {
+const cellTargetColor = (cell, targets) => {
     let { x, y } = cell;
-    let { activeTargetColor, activeTargetCoords } = pieces;
+    let { activeColor, activeCoords } = targets;
     let currentCoord = [x, y];
-    if (sameCoords(activeTargetCoords, currentCoord)) {
-        return TARGET_COLORS[activeTargetColor];
+    if (sameCoords(activeCoords, currentCoord)) {
+        return TARGET_COLORS[activeColor];
     } else {
         return 'transparent';
     }
 };
 
-const BoardCell = ({ cell, pieces }) => {
+const BoardCell = ({ cell, targets, robots }) => {
     return (
         <Container {...cell}
-            targetColor={cellTargetColor(cell, pieces)}
+            targetColor={cellTargetColor(cell, targets)}
         >
-            <Robot robotColor={cellRobotColor(cell, pieces)}/>
+            <Robot robotColor={cellRobotColor(cell, robots)}/>
         </Container>
     );
 };
